@@ -19,19 +19,19 @@ public class EntidadBancaria implements Serializable {
     private String codigoEntidadBancaria;
     private String nombre;
     private String cif;
-    private TipoEntidadBancaria tipoEntidadBancaria;
+   // private TipoEntidadBancaria tipoEntidadBancaria;
 
     //Constructor Vacio
     public EntidadBancaria() {
     }
 
     //Constructor Sobrecargado
-    public EntidadBancaria(int idEntidad, String codigoEntidad, String nombre, String cif, TipoEntidadBancaria tipoEntidadBancaria) {
+    public EntidadBancaria(int idEntidad, String codigoEntidad, String nombre, String cif/*, TipoEntidadBancaria tipoEntidadBancaria*/) {
         this.idEntidadBancaria = idEntidad;
         this.codigoEntidadBancaria = codigoEntidad;
         this.nombre = nombre;
         this.cif = cif;
-        this.tipoEntidadBancaria = tipoEntidadBancaria;
+      //  this.tipoEntidadBancaria = tipoEntidadBancaria;
     }
 
     public List<SucursalBancaria> getSucursalesBancarias() {
@@ -74,11 +74,11 @@ public class EntidadBancaria implements Serializable {
         this.cif = cif;
     }
 
-    public TipoEntidadBancaria getTipoEntidadBancaria() {
+   /* public TipoEntidadBancaria getTipoEntidadBancaria() {
         return tipoEntidadBancaria;
     }
 
     public void setTipoEntidadBancaria(TipoEntidadBancaria tipoEntidadBancaria) {
         this.tipoEntidadBancaria = tipoEntidadBancaria;
-    }
+    }*/
 }

@@ -12,7 +12,7 @@ and open the template in the editor.
     <property name="connection.password">root</property>
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
     <property name="hibernate.show_sql">true</property>
-    <mapping resource="EjemploHibernate/EntidadBancaria.hbm.xml"/>
-    <mapping class="EjemploHibernate.EntidadBancaria"/>
+    <mapping resource="com/fpmislata/daw2/ejemplohibernate/datos/EntidadBancaria.hbm.xml"/>
+    
   </session-factory>
 </hibernate-configuration>
