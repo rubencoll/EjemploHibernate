@@ -4,7 +4,6 @@
  */
 package com.fpmislata.daw2.ejemplohibernate.presentacion;
 
-
 import com.fpmislata.daw2.ejemplohibernate.negocio.EntidadBancaria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,26 +30,61 @@ public class EjemploHibernate {
         ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-        
+
         //Prueva para guardar en la base de datos
 
-        EntidadBancaria entidadBancaria = new EntidadBancaria(10,"101","Caja Rural","121212");
-        
+        EntidadBancaria entidadBancaria = new EntidadBancaria(10, "101", "Caja ROTA", "AAAA");
+
         Session session = sessionFactory.openSession(); //Abrimos la sesion
 
-        session.beginTransaction(); //Indicamos transferencia
+       /* session.beginTransaction(); //Indicamos transferencia
         
-        session.save(entidadBancaria);  //guardamos el objeto
+         session.save(entidadBancaria);  //guardamos el objeto
         
-        session.getTransaction().commit();  //Hacemos el commit
+         session.getTransaction().commit();  //Hacemos el commit
         
-        //session.getTransaction().rollback();
+         //session.getTransaction().rollback();*/
+
+
+
+
+        //Prueva de leer datos
+
+        /* EntidadBancaria entidadBancariaLeer = (EntidadBancaria) session.get(EntidadBancaria.class, 10);
+
+         System.out.println(entidadBancariaLeer.getNombre());*/
+
+
+
+        //Prueva de Actualizar
+
+        EntidadBancaria entidadBancariaUpdate = new EntidadBancaria(10, "101", "Caja Rural", "AAAA");
+
+        session.beginTransaction();
+
+        session.update(entidadBancariaUpdate);
+
+        session.getTransaction().commit();
+
+
+        //Prueba Borrar
         
-        session.close();    //Cerramos la session
+        session.beginTransaction();
+
+        session.delete(entidadBancariaUpdate);
+
+        session.getTransaction().commit();
+
+
+
+
+        session.close();    //Cerramos la session*/
+        
+        closeSession(sessionFactory);
 
     }
 
-    public void close(SessionFactory sessionFactory) {
+    public static void closeSession(SessionFactory sessionFactory) {
         sessionFactory.close();
     }
 }
