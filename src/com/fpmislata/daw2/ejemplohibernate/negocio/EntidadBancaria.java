@@ -4,6 +4,7 @@
  */
 package com.fpmislata.daw2.ejemplohibernate.negocio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author alumno
  */
-public class EntidadBancaria {
+public class EntidadBancaria implements Serializable {
 
     private int idEntidadBancaria;
     private List<SucursalBancaria> sucursalesBancarias = new ArrayList<>();
