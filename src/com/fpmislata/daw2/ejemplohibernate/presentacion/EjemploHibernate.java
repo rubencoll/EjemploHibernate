@@ -37,7 +37,7 @@ public class EjemploHibernate {
 
         Session session = sessionFactory.openSession(); //Abrimos la sesion
 
-       /* session.beginTransaction(); //Indicamos transferencia
+        /* session.beginTransaction(); //Indicamos transferencia
         
          session.save(entidadBancaria);  //guardamos el objeto
         
@@ -58,7 +58,7 @@ public class EjemploHibernate {
 
         //Prueva de Actualizar
 
-        EntidadBancaria entidadBancariaUpdate = new EntidadBancaria(10, "101", "Caja Rural", "AAAA");
+     /*   EntidadBancaria entidadBancariaUpdate = new EntidadBancaria(10, "101", "Caja Rural", "AAAA");
 
         session.beginTransaction();
 
@@ -68,18 +68,27 @@ public class EjemploHibernate {
 
 
         //Prueba Borrar
-        
+
         session.beginTransaction();
 
         session.delete(entidadBancariaUpdate);
 
+        session.getTransaction().commit();*/
+
+
+        //Prueba de guardar o actualizar
+
+        EntidadBancaria entidadBancariaInsertOrUpdate = new EntidadBancaria(10, "101", "Caja Rural", "BBB");
+
+        session.beginTransaction();
+
+        session.saveOrUpdate(entidadBancariaInsertOrUpdate);
+
         session.getTransaction().commit();
 
 
-
-
         session.close();    //Cerramos la session*/
-        
+
         closeSession(sessionFactory);
 
     }
