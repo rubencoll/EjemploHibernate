@@ -88,7 +88,7 @@ public class GenericDAOImplHibernate<T, ID extends Serializable> implements Gene
 
         Session session = sessionFactory.openSession(); //Abrimos la sesion
 
-        Query query = session.createQuery("SELECT t FROM T t");
+        Query query = session.createQuery("SELECT t FROM "+getEntityClass().getName()+" t");
 
         List<T> tList = query.list();
 
