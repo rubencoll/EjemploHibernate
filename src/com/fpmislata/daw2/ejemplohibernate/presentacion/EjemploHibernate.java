@@ -4,7 +4,10 @@
  */
 package com.fpmislata.daw2.ejemplohibernate.presentacion;
 
+import com.fpmislata.daw2.ejemplohibernate.datos.EntidadBancariaDAO;
+import com.fpmislata.daw2.ejemplohibernate.datos.EntidadBancariaDAOImplHibernate;
 import com.fpmislata.daw2.ejemplohibernate.negocio.EntidadBancaria;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -33,9 +36,9 @@ public class EjemploHibernate {
 
         //Prueva para guardar en la base de datos
 
-        EntidadBancaria entidadBancaria = new EntidadBancaria(10, "101", "Caja ROTA", "AAAA");
+        //  EntidadBancaria entidadBancaria = new EntidadBancaria(10, "101", "Caja ROTA", "AAAA");
 
-        Session session = sessionFactory.openSession(); //Abrimos la sesion
+        // Session session = sessionFactory.openSession(); //Abrimos la sesion
 
         /* session.beginTransaction(); //Indicamos transferencia
         
@@ -58,38 +61,77 @@ public class EjemploHibernate {
 
         //Prueva de Actualizar
 
-     /*   EntidadBancaria entidadBancariaUpdate = new EntidadBancaria(10, "101", "Caja Rural", "AAAA");
+        /*   EntidadBancaria entidadBancariaUpdate = new EntidadBancaria(10, "101", "Caja Rural", "AAAA");
 
-        session.beginTransaction();
+         session.beginTransaction();
 
-        session.update(entidadBancariaUpdate);
+         session.update(entidadBancariaUpdate);
 
-        session.getTransaction().commit();
+         session.getTransaction().commit();
 
 
-        //Prueba Borrar
+         //Prueba Borrar
 
-        session.beginTransaction();
+         session.beginTransaction();
 
-        session.delete(entidadBancariaUpdate);
+         session.delete(entidadBancariaUpdate);
 
-        session.getTransaction().commit();*/
+         session.getTransaction().commit();*/
 
 
         //Prueba de guardar o actualizar
 
-        EntidadBancaria entidadBancariaInsertOrUpdate = new EntidadBancaria(10, "101", "Caja Rural", "BBB");
+        /* EntidadBancaria entidadBancariaInsertOrUpdate = new EntidadBancaria(10, "101", "Caja Rural", "BBB");
 
-        session.beginTransaction();
+         session.beginTransaction();
 
-        session.saveOrUpdate(entidadBancariaInsertOrUpdate);
+         session.saveOrUpdate(entidadBancariaInsertOrUpdate);
 
-        session.getTransaction().commit();
+         session.getTransaction().commit();
 
 
-        session.close();    //Cerramos la session*/
+         session.close();    //Cerramos la session*/
 
-        closeSession(sessionFactory);
+        //closeSession(sessionFactory);
+        //sessionFactory.close();
+
+
+
+        //PRUEBAS AL DAO
+
+        //Leer
+
+        EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAOImplHibernate(sessionFactory);
+
+        EntidadBancaria entidadBancariaLeer = entidadBancariaDAO.read(10);
+
+        System.out.println(entidadBancariaLeer.getNombre());
+
+        //Insertar
+
+        /*EntidadBancaria entidadBancariaInsert = new EntidadBancaria(11, "111", "Caja Vacia", "BBBB");
+        
+         entidadBancariaDAO.insert(entidadBancariaInsert);
+         */
+        //Update
+
+     /*   EntidadBancaria entidadBancariaInsertOrUpdate = new EntidadBancaria(11, "000", "Caja Llena", "BBB");
+
+        entidadBancariaDAO.update(entidadBancariaInsertOrUpdate);
+*/
+
+        //Delete    
+
+       // entidadBancariaDAO.delete(11);
+
+
+        //Buscar todos
+
+        List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();
+
+        for (EntidadBancaria entidadBancaria : entidadesBancarias) {
+            System.out.println(entidadBancaria.getNombre());
+        }
 
     }
 
