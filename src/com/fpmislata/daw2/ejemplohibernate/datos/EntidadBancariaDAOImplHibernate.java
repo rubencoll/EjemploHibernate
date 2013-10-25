@@ -37,12 +37,30 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
 
     @Override
     public List<EntidadBancaria> findByCodigo(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Session session = sessionFactory.openSession(); //Abrimos la sesion
+
+        Query query = session.createQuery("SELECT entidadBancaria FROM EntidadBancaria entidadBancaria WHERE codigoentidadbancaria='" + codigo + "'");
+
+        List<EntidadBancaria> entidadesBancarias = query.list();
+
+        session.close();    //Cerramos la session
+
+        return entidadesBancarias;
     }
 
     @Override
     public List<EntidadBancaria> findByNombre(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Session session = sessionFactory.openSession(); //Abrimos la sesion
+
+        Query query = session.createQuery("SELECT entidadBancaria FROM EntidadBancaria entidadBancaria WHERE nombre='" + nombre + "'");
+
+        List<EntidadBancaria> entidadesBancarias = query.list();
+
+        session.close();    //Cerramos la session
+
+        return entidadesBancarias;
     }
 
     @Override

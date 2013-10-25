@@ -115,14 +115,14 @@ public class EjemploHibernate {
          */
         //Update
 
-     /*   EntidadBancaria entidadBancariaInsertOrUpdate = new EntidadBancaria(11, "000", "Caja Llena", "BBB");
+        /*   EntidadBancaria entidadBancariaInsertOrUpdate = new EntidadBancaria(11, "000", "Caja Llena", "BBB");
 
-        entidadBancariaDAO.update(entidadBancariaInsertOrUpdate);
-*/
+         entidadBancariaDAO.update(entidadBancariaInsertOrUpdate);
+         */
 
         //Delete    
 
-       // entidadBancariaDAO.delete(11);
+        // entidadBancariaDAO.delete(11);
 
 
         //Buscar todos
@@ -130,6 +130,23 @@ public class EjemploHibernate {
         List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();
 
         for (EntidadBancaria entidadBancaria : entidadesBancarias) {
+            System.out.println(entidadBancaria.getNombre());
+        }
+
+        //Buscar por Codigo
+
+        List<EntidadBancaria> entidadesBancariasCod = entidadBancariaDAO.findByCodigo("11");
+
+        for (EntidadBancaria entidadBancaria : entidadesBancariasCod) {
+            System.out.println(entidadBancaria.getNombre());
+        }
+
+
+        //Buscar por Nombre
+        
+         List<EntidadBancaria> entidadesBancariasNom = entidadBancariaDAO.findByCodigo("Bankaja");
+
+        for (EntidadBancaria entidadBancaria : entidadesBancariasNom) {
             System.out.println(entidadBancaria.getNombre());
         }
 
