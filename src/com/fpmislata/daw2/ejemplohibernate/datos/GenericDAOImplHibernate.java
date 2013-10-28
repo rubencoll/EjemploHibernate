@@ -29,11 +29,13 @@ public class GenericDAOImplHibernate<T, ID extends Serializable> implements Gene
     @Override
     public T read(ID id) {
 
-        Session session = sessionFactory.openSession(); //Abrimos la sesion
+        //Session session = sessionFactory.openSession(); //Abrimos la sesion
+        
+        Session session = sessionFactory.getCurrentSession(); //Abrimos la sesion
 
         T t = (T) session.get(getEntityClass(), id);
 
-        session.close();    //Cerramos la session
+        //session.close();    //Cerramos la session
 
         return t;
     }
@@ -41,7 +43,7 @@ public class GenericDAOImplHibernate<T, ID extends Serializable> implements Gene
     @Override
     public void insert(T t) {
 
-        Session session = sessionFactory.openSession(); //Abrimos la sesion
+        Session session = sessionFactory.getCurrentSession(); //Abrimos la sesion
 
         session.beginTransaction(); //Indicamos transferencia
 
@@ -49,13 +51,12 @@ public class GenericDAOImplHibernate<T, ID extends Serializable> implements Gene
 
         session.getTransaction().commit();  //Hacemos el commit
 
-        session.close();    //Cerramos la session*/
     }
 
     @Override
     public void update(T t) {
 
-        Session session = sessionFactory.openSession(); //Abrimos la sesion
+        Session session = sessionFactory.getCurrentSession(); //Abrimos la sesion
 
         session.beginTransaction();
 
@@ -63,13 +64,13 @@ public class GenericDAOImplHibernate<T, ID extends Serializable> implements Gene
 
         session.getTransaction().commit();
 
-        session.close();    //Cerramos la session
+       
     }
 
     @Override
     public void delete(ID id) {
 
-        Session session = sessionFactory.openSession(); //Abrimos la sesion
+        Session session = sessionFactory.getCurrentSession(); //Abrimos la sesion
 
         T t = (T) session.get(getEntityClass(), id);
         // EntidadBancaria entidadBancariaBorrar = read(idEntidadBancaria);
@@ -80,23 +81,17 @@ public class GenericDAOImplHibernate<T, ID extends Serializable> implements Gene
 
         session.getTransaction().commit();
 
-        session.close();    //Cerramos la session
+        
     }
 
     @Override
     public List<T> findAll() {
 
-        Session session = sessionFactory.openSession(); //Abrimos la sesion
+        Session session = sessionFactory.getCurrentSession(); //Abrimos la sesion
 
         Query query = session.createQuery("SELECT t FROM "+getEntityClass().getName()+" t");
 
-        List<T> tList = query.list();
-
-        /*for (EntidadBancaria entidadBancaria : entidadesBancarias) {
-         System.out.println(entidadBancaria.toString());
-         }*/
-
-        session.close();    //Cerramos la session
+        List<T> tList = query.list(); 
 
         return tList;
     }

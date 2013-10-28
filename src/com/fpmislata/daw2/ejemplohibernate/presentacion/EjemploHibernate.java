@@ -35,7 +35,7 @@ public class EjemploHibernate {
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);*/
 
         HibernateUtil.buildSessionFactory();
-   
+        HibernateUtil.openSessionAndBindToThread();
         
         
         //Prueva para guardar en la base de datos
@@ -154,7 +154,7 @@ public class EjemploHibernate {
             System.out.println(entidadBancaria.getNombre());
         }
         
-      
+        HibernateUtil.closeSessionAndUnbindFromThread();
         
         HibernateUtil.closeSessionFactory();
 

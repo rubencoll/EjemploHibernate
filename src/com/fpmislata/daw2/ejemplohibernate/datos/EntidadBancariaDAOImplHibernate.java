@@ -17,8 +17,6 @@ import org.hibernate.SessionFactory;
  */
 public class EntidadBancariaDAOImplHibernate extends GenericDAOImplHibernate<EntidadBancaria, Integer> implements EntidadBancariaDAO {
 
-
-   
     @Override
     public List<EntidadBancaria> findByCodigo(String codigo) {
 
