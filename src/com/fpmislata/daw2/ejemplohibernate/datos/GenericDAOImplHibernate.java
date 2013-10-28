@@ -21,9 +21,9 @@ public class GenericDAOImplHibernate<T, ID extends Serializable> implements Gene
 
     SessionFactory sessionFactory;
 
-    public GenericDAOImplHibernate(SessionFactory sessionFactory) {
+    public GenericDAOImplHibernate() {
 
-        this.sessionFactory = sessionFactory;
+        this.sessionFactory = HibernateUtil.getSessionFactory();
     }
 
     @Override

@@ -6,6 +6,7 @@ package com.fpmislata.daw2.ejemplohibernate.presentacion;
 
 import com.fpmislata.daw2.ejemplohibernate.datos.EntidadBancariaDAO;
 import com.fpmislata.daw2.ejemplohibernate.datos.EntidadBancariaDAOImplHibernate;
+import com.fpmislata.daw2.ejemplohibernate.datos.HibernateUtil;
 import com.fpmislata.daw2.ejemplohibernate.negocio.EntidadBancaria;
 import java.util.List;
 import org.hibernate.Session;
@@ -26,14 +27,17 @@ public class EjemploHibernate {
     public static void main(String[] args) {
 
 
-        SessionFactory sessionFactory;
+       /* SessionFactory sessionFactory;
 
         Configuration configuration = new Configuration();
         configuration.configure();
         ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        sessionFactory = configuration.buildSessionFactory(serviceRegistry);*/
 
-
+        HibernateUtil.buildSessionFactory();
+   
+        
+        
         //Prueva para guardar en la base de datos
 
         //  EntidadBancaria entidadBancaria = new EntidadBancaria(10, "101", "Caja ROTA", "AAAA");
@@ -101,7 +105,7 @@ public class EjemploHibernate {
 
         //Leer
 
-        EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAOImplHibernate(sessionFactory);
+        EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAOImplHibernate();
 
         EntidadBancaria entidadBancariaLeer = entidadBancariaDAO.read(10);
 
@@ -144,11 +148,15 @@ public class EjemploHibernate {
 
         //Buscar por Nombre
         
-         List<EntidadBancaria> entidadesBancariasNom = entidadBancariaDAO.findByCodigo("Bankaja");
+         List<EntidadBancaria> entidadesBancariasNom = entidadBancariaDAO.findByNombre("BBVA");
 
         for (EntidadBancaria entidadBancaria : entidadesBancariasNom) {
             System.out.println(entidadBancaria.getNombre());
         }
+        
+      
+        
+        HibernateUtil.closeSessionFactory();
 
     }
 
