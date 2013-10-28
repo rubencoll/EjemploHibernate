@@ -20,13 +20,11 @@ public class EntidadBancariaDAOImplHibernate extends GenericDAOImplHibernate<Ent
     @Override
     public List<EntidadBancaria> findByCodigo(String codigo) {
 
-        Session session = sessionFactory.openSession(); //Abrimos la sesion
+        Session session = sessionFactory.getCurrentSession(); //Abrimos la sesion
 
         Query query = session.createQuery("SELECT entidadBancaria FROM EntidadBancaria entidadBancaria WHERE codigoentidadbancaria='" + codigo + "'");
 
         List<EntidadBancaria> entidadesBancarias = query.list();
-
-        session.close();    //Cerramos la session
 
         return entidadesBancarias;
     }
@@ -35,18 +33,17 @@ public class EntidadBancariaDAOImplHibernate extends GenericDAOImplHibernate<Ent
     @Override
     public List<EntidadBancaria> findByNombre(String nombre) {
         
-        Session session = sessionFactory.openSession(); //Abrimos la sesion
+        Session session = sessionFactory.getCurrentSession(); //Abrimos la sesion
 
         Query query = session.createQuery("SELECT entidadBancaria FROM EntidadBancaria entidadBancaria WHERE nombre='" + nombre + "'");
 
         List<EntidadBancaria> entidadesBancarias = query.list();
 
-        session.close();    //Cerramos la session
 
         return entidadesBancarias;
     }
     
-    //
+    // Estos metodos pasan al GenericDAOImplHibernate
 //    @Override
 //    public EntidadBancaria read(Integer idEntidadBancaria) {
 //
